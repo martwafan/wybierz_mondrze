@@ -31,6 +31,10 @@
       max-width: 200px;
       border-radius: 10px;
     }
+    #audioWiktoria {
+      display: none;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -58,13 +62,27 @@
     <p><strong>Słabości:</strong> Maria Adamiak</p>
   </div>
 
+  <button onclick="pokazAudio()">Kliknij ten guzik Wiktoria</button>
+
+  <div id="audioWiktoria" style="display: none; margin-top: 10px;">
+    <audio controls>
+      <source src="romantic-sax.mp3" type="audio/mpeg">
+      Twoja przeglądarka nie obsługuje odtwarzania dźwięku.
+    </audio>
+  </div>
+
   <script>
     function showCharacter(name) {
       document.getElementById("maria").style.display = "none";
       document.getElementById("wiktoria").style.display = "none";
       document.getElementById(name).style.display = "block";
     }
+
+    function pokazAudio() {
+      document.getElementById("audioWiktoria").style.display = "block";
+    }
   </script>
 
 </body>
 </html>
+
