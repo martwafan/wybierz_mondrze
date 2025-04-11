@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Wybierz Postać</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+    .character-button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .character-info {
+      display: none;
+      margin-top: 30px;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    img {
+      max-width: 200px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Wybierz swoją postać</h1>
+
+  <button class="character-button" onclick="showCharacter('maria')">Maria</button>
+  <button class="character-button" onclick="showCharacter('wiktoria')">Wiktoria</button>
+
+  <div id="maria" class="character-info">
+    <h2>Maria</h2>
+    <img src="https://via.placeholder.com/200x250?text=Maria" alt="Maria">
+    <p><strong>Wiek:</strong> 28 lat</p>
+    <p><strong>Cechy:</strong> Odważna, inteligentna, opiekuńcza</p>
+    <p><strong>Zdolności:</strong> Leczenie, negocjacja</p>
+    <p><strong>Słabości:</strong> Lęk wysokości</p>
+  </div>
+
+  <div id="wiktoria" class="character-info">
+    <h2>Wiktoria</h2>
+    <img src="https://via.placeholder.com/200x250?text=Wiktoria" alt="Wiktoria">
+    <p><strong>Wiek:</strong> 32 lata</p>
+    <p><strong>Cechy:</strong> Sprytna, tajemnicza, ambitna</p>
+    <p><strong>Zdolności:</strong> Kamuflaż, hakowanie</p>
+    <p><strong>Słabości:</strong> Brak zaufania do innych</p>
+  </div>
+
+  <script>
+    function showCharacter(name) {
+      document.getElementById("maria").style.display = "none";
+      document.getElementById("wiktoria").style.display = "none";
+      document.getElementById(name).style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
