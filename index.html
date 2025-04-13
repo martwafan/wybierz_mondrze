@@ -8,10 +8,18 @@
       font-family: Arial, sans-serif;
       padding: 20px;
       background-color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     h1 {
       text-align: center;
+    }
+
+    .character-selection {
+      text-align: center;
+      margin-top: 20px;
     }
 
     .character-button {
@@ -31,6 +39,7 @@
       max-width: 500px;
       margin-left: auto;
       margin-right: auto;
+      text-align: center;
     }
 
     img {
@@ -103,15 +112,16 @@
     button.add-comment:hover {
       background-color: #0056b3;
     }
-
   </style>
 </head>
 <body>
 
   <h1>Wybierz swoją postać</h1>
 
-  <button class="character-button" onclick="showCharacter('maria')">Maria</button>
-  <button class="character-button" onclick="showCharacter('wiktoria')">Wiktoria</button>
+  <div class="character-selection">
+    <button class="character-button" onclick="showCharacter('maria')">Maria</button>
+    <button class="character-button" onclick="showCharacter('wiktoria')">Wiktoria</button>
+  </div>
 
   <!-- Komentarze -->
   <div class="comments-section" id="comments">
@@ -142,9 +152,11 @@
     <p><strong>Słabości:</strong> Maria Adamiak</p>
   </div>
 
+  <!-- Przycisk audio -->
   <button class="audio-button" onclick="pokazAudio()">Kliknij ten guzik Wiktoria</button>
 
-  <div id="audioWiktoria" style="display: none; margin-top: 10px;">
+  <!-- Audio -->
+  <div id="audioWiktoria">
     <audio controls>
       <source src="iknew.mp3" type="audio/mpeg">
       Twoja przeglądarka nie obsługuje odtwarzania dźwięku.
@@ -183,3 +195,4 @@
 
 </body>
 </html>
+
