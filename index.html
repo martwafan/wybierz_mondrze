@@ -6,29 +6,16 @@
   <style>
     body {
       font-family: Arial, sans-serif;
+      text-align: center;
       padding: 20px;
       background-color: #f0f0f0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
-
-    h1 {
-      text-align: center;
-    }
-
-    .character-selection {
-      text-align: center;
-      margin-top: 20px;
-    }
-
     .character-button {
       padding: 10px 20px;
       margin: 10px;
       font-size: 18px;
       cursor: pointer;
     }
-
     .character-info {
       display: none;
       margin-top: 30px;
@@ -36,15 +23,20 @@
       background: white;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      width: 500px;
-      text-align: center;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
     }
-
     img {
       max-width: 200px;
       border-radius: 10px;
     }
-
+    #audioWiktoria {
+      display: none;
+      margin-top: 20px;
+    }
+    
+    /* Styl do przycisku w prawym dolnym rogu */
     .audio-button {
       position: fixed;
       right: 20px;
@@ -62,75 +54,15 @@
     .audio-button:hover {
       background-color: #45a049;
     }
-
-    #audioWiktoria {
-      display: none;
-      margin-top: 20px;
-    }
-
-    /* KOMENTARZE */
-    .comments-section {
-      display: none;
-      position: fixed;
-      left: 20px;
-      top: 100px;
-      width: 250px;
-      background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      padding: 15px;
-    }
-
-    .comments-section h3 {
-      margin-top: 0;
-    }
-
-    .comment {
-      margin-bottom: 10px;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 5px;
-    }
-
-    input, textarea {
-      width: 100%;
-      margin: 5px 0;
-      padding: 5px;
-    }
-
-    button.add-comment {
-      background-color: #007BFF;
-      color: white;
-      border: none;
-      padding: 8px;
-      width: 100%;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button.add-comment:hover {
-      background-color: #0056b3;
-    }
   </style>
 </head>
 <body>
 
   <h1>Wybierz swoją postać</h1>
 
-  <div class="character-selection">
-    <button class="character-button" onclick="showCharacter('maria')">Maria</button>
-    <button class="character-button" onclick="showCharacter('wiktoria')">Wiktoria</button>
-  </div>
+  <button class="character-button" onclick="showCharacter('maria')">Maria</button>
+  <button class="character-button" onclick="showCharacter('wiktoria')">Wiktoria</button>
 
-  <!-- Komentarze -->
-  <div class="comments-section" id="comments">
-    <h3>Dodaj komentarz</h3>
-    <input type="text" id="username" placeholder="Twoja nazwa">
-    <textarea id="commentText" placeholder="Twój komentarz"></textarea>
-    <button class="add-comment" onclick="addComment()">Dodaj komentarz</button>
-    <div id="commentList"></div>
-  </div>
-
-  <!-- Maria -->
   <div id="maria" class="character-info">
     <h2>Maria</h2>
     <img src="https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/434026113_1223216478642130_5540321584384951919_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=107&ccb=1-7&_nc_sid=e99d92&_nc_ohc=nN4Atnb_XvAQ7kNvwE5tlKV&_nc_oc=AdmJA2DBy31M3f_tuu6jkKblpLSIqq8jBixZN6bOG4ijCi9kiAKmUFgKgTapiTO3W4D3DpFLDy35sJTP8fwgYhFF&_nc_zt=24&_nc_ht=scontent-waw2-2.xx&_nc_gid=6dpOO_1uzhN0ifhlvjmAAQ&oh=00_AfFpcLj4W-nHX4QlEqMPs7BYRCqCy21dDHeb0ztjky2XSA&oe=67FEFDA4" alt="Maria">
@@ -140,7 +72,6 @@
     <p><strong>Słabości:</strong> That one girl who can sing</p>
   </div>
 
-  <!-- Wiktoria -->
   <div id="wiktoria" class="character-info">
     <h2>Wiktoria</h2>
     <img src="https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/458761215_2250802375305871_8073348557999722281_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=102&ccb=1-7&_nc_sid=e99d92&_nc_ohc=8_rdS_3LnngQ7kNvwFE0Tmo&_nc_oc=Adl2w88QsrqJifRqhTHJgyLF_99FhpV2x3wE15BjdqySUgcivbygVf8WcBZf_i5Up2uIwAsIAXTeu0IEtUhqq8C2&_nc_zt=24&_nc_ht=scontent-waw2-2.xx&_nc_gid=xn7f08iIZQst8-k14uQ5cw&oh=00_AfHeeZLEvBE1tiADqzvFX8Y-1Zld51crHOjM_vo-4NUv4w&oe=67FED624" alt="Wiktoria">
@@ -150,13 +81,11 @@
     <p><strong>Słabości:</strong> Maria Adamiak</p>
   </div>
 
-  <!-- Przycisk audio -->
   <button class="audio-button" onclick="pokazAudio()">Kliknij ten guzik Wiktoria</button>
 
-  <!-- Audio -->
-  <div id="audioWiktoria">
+  <div id="audioWiktoria" style="display: none; margin-top: 10px;">
     <audio controls>
-      <source src="iknew.mp3" type="audio/mpeg">
+      <source src="romantic-sax.mp3" type="audio/mpeg">
       Twoja przeglądarka nie obsługuje odtwarzania dźwięku.
     </audio>
   </div>
@@ -165,29 +94,11 @@
     function showCharacter(name) {
       document.getElementById("maria").style.display = "none";
       document.getElementById("wiktoria").style.display = "none";
-      document.getElementById("comments").style.display = "block";
       document.getElementById(name).style.display = "block";
     }
 
     function pokazAudio() {
       document.getElementById("audioWiktoria").style.display = "block";
-    }
-
-    function addComment() {
-      const user = document.getElementById("username").value.trim();
-      const text = document.getElementById("commentText").value.trim();
-
-      if (user && text) {
-        const commentList = document.getElementById("commentList");
-        const newComment = document.createElement("div");
-        newComment.className = "comment";
-        newComment.innerHTML = `<strong>${user}</strong>: ${text}`;
-        commentList.appendChild(newComment);
-
-        // Czyści pola
-        document.getElementById("username").value = "";
-        document.getElementById("commentText").value = "";
-      }
     }
   </script>
 
