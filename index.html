@@ -10,12 +10,22 @@
       padding: 20px;
       background-color: #f0f0f0;
     }
+
     .character-button, .next-button {
       padding: 10px 20px;
       margin: 10px;
       font-size: 18px;
       cursor: pointer;
+      background-color: #ffc0cb;
+      border: 2px solid #ff99aa;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
     }
+
+    .character-button:hover, .next-button:hover {
+      background-color: #ffb6c1;
+    }
+
     .character-info {
       display: none;
       margin-top: 30px;
@@ -27,30 +37,48 @@
       margin-left: auto;
       margin-right: auto;
     }
+
     .game-section {
       display: none;
       margin-top: 30px;
     }
+
     .character-image {
       max-width: 200px;
       border-radius: 10px;
     }
+
     .images-container {
       display: flex;
       justify-content: space-around;
       align-items: center;
       margin-top: 20px;
     }
+
     .emoji-buttons button {
       font-size: 40px;
       margin: 10px;
       cursor: pointer;
-      background: none;
-      border: none;
+      background-color: #ffc0cb;
+      border: 2px solid #ff99aa;
+      border-radius: 10px;
+      padding: 10px 15px;
+      transition: transform 0.2s ease;
     }
+
+    .emoji-buttons button:hover {
+      transform: scale(1.1);
+    }
+
     .result-text {
       font-size: 20px;
       margin-top: 20px;
+    }
+
+    .game-description {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
     }
   </style>
 </head>
@@ -82,6 +110,10 @@
   </div>
 
   <div id="game" class="game-section">
+    <div class="game-description">
+      Gra: Papier, Kamień, Nożyce<br>
+      UWAGA: wszyscy zawsze wybierają ✂️, więc będzie remis 😎
+    </div>
     <div class="images-container">
       <img id="playerImage" class="character-image" src="" alt="Twoja postać">
       <img id="enemyImage" class="character-image" src="" alt="Przeciwnik">
