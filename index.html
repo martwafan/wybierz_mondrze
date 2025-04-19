@@ -52,15 +52,27 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
+      gap: 30px;
       margin-top: 40px;
     }
 
     .images-row {
       display: flex;
       justify-content: center;
+      align-items: flex-start;
+      gap: 120px;
+    }
+
+    .image-container {
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 60px;
+    }
+
+    .image-label {
+      font-size: 18px;
+      margin-bottom: 10px;
+      font-weight: bold;
     }
 
     .emoji-buttons {
@@ -130,8 +142,14 @@
 
     <div class="game-area">
       <div class="images-row">
-        <img id="playerImage" class="character-image" src="" alt="Twoja postać">
-        <img id="enemyImage" class="character-image" src="" alt="Przeciwnik">
+        <div class="image-container">
+          <div class="image-label">Twoja postać</div>
+          <img id="playerImage" class="character-image" src="" alt="Twoja postać">
+        </div>
+        <div class="image-container">
+          <div class="image-label">Przeciwnik</div>
+          <img id="enemyImage" class="character-image" src="" alt="Przeciwnik">
+        </div>
       </div>
 
       <div class="emoji-buttons">
