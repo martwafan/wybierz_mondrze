@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Gra Papier, Kamień, Nożyce</title>
+  <title>Wybierz Postać</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -10,44 +10,88 @@
       padding: 20px;
       background-color: #f0f0f0;
     }
-    .character-selection {
-      margin-top: 20px;
+
+    .character-button, .next-button, .audio-button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
     }
-    .game-section {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      margin-top: 30px;
+
+    .character-button {
+      background-color: #2196F3;
+      color: white;
     }
+
+    .next-button {
+      background-color: #FF5722;
+      color: white;
+      display: none;
+    }
+
     .character-info {
+      display: none;
+      margin-top: 30px;
       padding: 20px;
       background: white;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      max-width: 200px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
     }
+
     img {
-      max-width: 100%;
+      max-width: 200px;
       border-radius: 10px;
     }
-    .choice-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
+
+    .audio-button {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background-color: #4CAF50;
+      color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .audio-button:hover {
+      background-color: #45a049;
+    }
+
+    #audioWiktoria {
+      display: none;
       margin-top: 20px;
     }
-    .choice-button {
-      font-size: 40px;
-      cursor: pointer;
-      border: none;
-      background: none;
-    }
-    .result-section {
-      margin-top: 30px;
-      font-size: 20px;
-    }
-    .hidden {
+
+    .game-section {
       display: none;
+      margin-top: 30px;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .game-button {
+      padding: 15px 25px;
+      font-size: 28px;
+      margin: 10px;
+      background-color: #673AB7;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .game-button:hover {
+      transform: scale(1.1);
     }
   </style>
 </head>
@@ -55,73 +99,84 @@
 
   <h1>Wybierz swoją postać</h1>
 
-  <div class="character-selection">
-    <button onclick="selectCharacter('maria')">Maria</button>
-    <button onclick="selectCharacter('wiktoria')">Wiktoria</button>
+  <button class="character-button" onclick="showCharacter('maria')">Maria</button>
+  <button class="character-button" onclick="showCharacter('wiktoria')">Wiktoria</button>
+
+  <div id="maria" class="character-info">
+    <h2>Maria</h2>
+    <img src="https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/434026113_1223216478642130_5540321584384951919_n.jpg" alt="Maria">
+    <p><strong>Wiek:</strong> 19 lat</p>
+    <p><strong>Cechy:</strong> SLAY</p>
+    <p><strong>Zdolności:</strong> Może zagrać na twoim flecie :3</p>
+    <p><strong>Słabości:</strong> That one girl who can sing</p>
   </div>
 
-  <div class="game-section hidden" id="game">
-    <div class="character-info">
-      <img id="playerImage" src="" alt="Twoja postać">
-      <p id="playerName"></p>
-    </div>
+  <div id="wiktoria" class="character-info">
+    <h2>Wiktoria</h2>
+    <img src="https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/458761215_2250802375305871_8073348557999722281_n.jpg" alt="Wiktoria">
+    <p><strong>Wiek:</strong> 20 lat</p>
+    <p><strong>Cechy:</strong> SIGMA GIRL</p>
+    <p><strong>Zdolności:</strong> Singing</p>
+    <p><strong>Słabości:</strong> Maria Adamiak</p>
+  </div>
 
+  <button class="next-button" id="nextBtn" onclick="goToGame()">Dalej</button>
+
+  <button class="audio-button" onclick="pokazAudio()">Kliknij ten guzik Wiktoria</button>
+
+  <div id="audioWiktoria">
+    <audio controls>
+      <source src="iknew.mp3" type="audio/mpeg">
+      Twoja przeglądarka nie obsługuje odtwarzania dźwięku.
+    </audio>
+  </div>
+
+  <!-- GRA -->
+  <div id="game" class="game-section">
+    <h2>Gra: Kamień, Papier, Nożyce</h2>
+    <p id="versusText"></p>
     <div>
-      <h2>Wybierz swój ruch</h2>
-      <div class="choice-buttons">
-        <button class="choice-button" onclick="makeMove('✋')">✋</button>
-        <button class="choice-button" onclick="makeMove('🪨')">🪨</button>
-        <button class="choice-button" onclick="makeMove('✂️')">✂️</button>
-      </div>
-      <div class="result-section" id="result"></div>
+      <button class="game-button" onclick="playGame('✂️')">✂️</button>
+      <button class="game-button" onclick="playGame('🖖')">🖖</button>
+      <button class="game-button" onclick="playGame('✌️')">✌️</button>
     </div>
-
-    <div class="character-info">
-      <img id="opponentImage" src="" alt="Przeciwnik">
-      <p id="opponentName"></p>
-    </div>
+    <p id="result" style="margin-top: 20px; font-weight: bold;"></p>
   </div>
 
   <script>
-    let player = {};
-    let opponent = {};
+    let wybranaPostac = "";
 
-    const characters = {
-      maria: {
-        name: "Maria",
-        img: "https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/434026113_1223216478642130_5540321584384951919_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=e99d92&_nc_ohc=nN4Atnb_XvAQ7kNvwE5tlKV&_nc_oc=AdmJA2DBy31M3f_tuu6jkKblpLSIqq8jBixZN6bOG4ijCi9kiAKmUFgKgTapiTO3W4D3DpFLDy35sJTP8fwgYhFF&_nc_zt=24&_nc_ht=scontent-waw2-2.xx&oh=00_AfFpcLj4W-nHX4QlEqMPs7BYRCqCy21dDHeb0ztjky2XSA&oe=67FEFDA4"
-      },
-      wiktoria: {
-        name: "Wiktoria",
-        img: "https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/458761215_2250802375305871_8073348557999722281_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=e99d92&_nc_ohc=8_rdS_3LnngQ7kNvwFE0Tmo&_nc_oc=Adl2w88QsrqJifRqhTHJgyLF_99FhpV2x3wE15BjdqySUgcivbygVf8WcBZf_i5Up2uIwAsIAXTeu0IEtUhqq8C2&_nc_zt=24&_nc_ht=scontent-waw2-2.xx&oh=00_AfHeeZLEvBE1tiADqzvFX8Y-1Zld51crHOjM_vo-4NUv4w&oe=67FED624"
-      }
-    };
+    function showCharacter(name) {
+      document.getElementById("maria").style.display = "none";
+      document.getElementById("wiktoria").style.display = "none";
+      document.getElementById("game").style.display = "none";
+      document.getElementById("nextBtn").style.display = "inline-block";
 
-    function selectCharacter(name) {
-      player = characters[name];
-      opponent = name === 'maria' ? characters['wiktoria'] : characters['maria'];
-
-      document.getElementById('playerImage').src = player.img;
-      document.getElementById('playerName').textContent = player.name;
-      document.getElementById('opponentImage').src = opponent.img;
-      document.getElementById('opponentName').textContent = opponent.name;
-
-      document.getElementById('game').classList.remove('hidden');
-      document.getElementById('result').innerHTML = "";
+      document.getElementById(name).style.display = "block";
+      wybranaPostac = name;
     }
 
-    function makeMove(playerMove) {
-      const opponentMove = '✂️';
+    function pokazAudio() {
+      document.getElementById("audioWiktoria").style.display = "block";
+    }
 
-      document.getElementById('result').innerHTML = `
-        <p>Wybrałeś: ✂️</p>
-        <p>${opponent.name} wybrała: ${opponentMove}</p>
-        <h3>Remis!</h3>
-      `;
+    function goToGame() {
+      document.getElementById("maria").style.display = "none";
+      document.getElementById("wiktoria").style.display = "none";
+      document.getElementById("nextBtn").style.display = "none";
+      document.getElementById("game").style.display = "block";
+
+      const przeciwnik = wybranaPostac === "maria" ? "Wiktoria" : "Maria";
+      document.getElementById("versusText").innerText = `Ty: ${wybranaPostac.charAt(0).toUpperCase() + wybranaPostac.slice(1)} vs ${przeciwnik}`;
+    }
+
+    function playGame(userChoice) {
+      const przeciwnikChoice = '✂️';
+      const result = "Remis! Oboje wybraliście nożyce ✂️";
+      document.getElementById("result").innerText = result;
     }
   </script>
 
 </body>
 </html>
-
 
