@@ -73,7 +73,7 @@
       background: white;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      max-width: 500px;
+      max-width: 800px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -93,6 +93,19 @@
     .game-button:hover {
       transform: scale(1.1);
     }
+
+    .game-layout {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .game-layout img {
+      max-width: 150px;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
@@ -104,7 +117,7 @@
 
   <div id="maria" class="character-info">
     <h2>Maria</h2>
-    <img src="https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/434026113_1223216478642130_5540321584384951919_n.jpg" alt="Maria">
+    <img src="https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/434026113_1223216478642130_5540321584384951919_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=107&ccb=1-7&_nc_sid=e99d92&_nc_ohc=Uw9LUV1eLjMQ7kNvwHrSWCp&_nc_oc=AdnnIkEctgMRtq4G18Vwpb-BOGB4IE5_1VLzLF2hue7XuzBNEwZ0ySMs0cik6Pyp4YCFxvkUIybCv4i_GZonkOTw&_nc_zt=24&_nc_ht=scontent-waw2-2.xx&_nc_gid=_52SSiPK3dQR1dHb9FITaw&oh=00_AfFPRwsyggNP9wy4iH0rz2VY-vIGbZeh1o2I-BmKdwZXxg&oe=680989A4">
     <p><strong>Wiek:</strong> 19 lat</p>
     <p><strong>Cechy:</strong> SLAY</p>
     <p><strong>Zdolności:</strong> Może zagrać na twoim flecie :3</p>
@@ -113,7 +126,7 @@
 
   <div id="wiktoria" class="character-info">
     <h2>Wiktoria</h2>
-    <img src="https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/458761215_2250802375305871_8073348557999722281_n.jpg" alt="Wiktoria">
+    <img src="https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/458761215_2250802375305871_8073348557999722281_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=102&ccb=1-7&_nc_sid=e99d92&_nc_ohc=59scoXVmVA0Q7kNvwEd5IwB&_nc_oc=Adk5QcaTcsJI3Me3MIZXtxX77LfoOzIyiFBG75NAvnP6jGcRrAvhpf-GTyNoeuwHply9JMyGN2WQeGXFWVTk5dH2&_nc_zt=24&_nc_ht=scontent-waw2-2.xx&_nc_gid=40J-tCsYECP1DaQiY1H5rw&oh=00_AfHpxSAuqpPa9JrKQvlqM51vVwpVMWR54IcUgrVdLWXRaA&oe=68099A64">
     <p><strong>Wiek:</strong> 20 lat</p>
     <p><strong>Cechy:</strong> SIGMA GIRL</p>
     <p><strong>Zdolności:</strong> Singing</p>
@@ -135,16 +148,27 @@
   <div id="game" class="game-section">
     <h2>Gra: Kamień, Papier, Nożyce</h2>
     <p id="versusText"></p>
-    <div>
-      <button class="game-button" onclick="playGame('✂️')">✂️</button>
-      <button class="game-button" onclick="playGame('🖖')">🖖</button>
-      <button class="game-button" onclick="playGame('✌️')">✌️</button>
+
+    <div class="game-layout">
+      <div><img id="playerImage" src="" alt="Ty"></div>
+      <div>
+        <button class="game-button" onclick="playGame('✂️')">✂️</button>
+        <button class="game-button" onclick="playGame('✂️')">✂️</button>
+        <button class="game-button" onclick="playGame('✂️')">✂️</button>
+      </div>
+      <div><img id="enemyImage" src="" alt="Przeciwnik"></div>
     </div>
+
     <p id="result" style="margin-top: 20px; font-weight: bold;"></p>
   </div>
 
   <script>
     let wybranaPostac = "";
+
+    const imgLinks = {
+      maria: "https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/434026113_1223216478642130_5540321584384951919_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=107&ccb=1-7&_nc_sid=e99d92&_nc_ohc=Uw9LUV1eLjMQ7kNvwHrSWCp&_nc_oc=AdnnIkEctgMRtq4G18Vwpb-BOGB4IE5_1VLzLF2hue7XuzBNEwZ0ySMs0cik6Pyp4YCFxvkUIybCv4i_GZonkOTw&_nc_zt=24&_nc_ht=scontent-waw2-2.xx&_nc_gid=_52SSiPK3dQR1dHb9FITaw&oh=00_AfFPRwsyggNP9wy4iH0rz2VY-vIGbZeh1o2I-BmKdwZXxg&oe=680989A4",
+      wiktoria: "https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/458761215_2250802375305871_8073348557999722281_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=102&ccb=1-7&_nc_sid=e99d92&_nc_ohc=59scoXVmVA0Q7kNvwEd5IwB&_nc_oc=Adk5QcaTcsJI3Me3MIZXtxX77LfoOzIyiFBG75NAvnP6jGcRrAvhpf-GTyNoeuwHply9JMyGN2WQeGXFWVTk5dH2&_nc_zt=24&_nc_ht=scontent-waw2-2.xx&_nc_gid=40J-tCsYECP1DaQiY1H5rw&oh=00_AfHpxSAuqpPa9JrKQvlqM51vVwpVMWR54IcUgrVdLWXRaA&oe=68099A64"
+    };
 
     function showCharacter(name) {
       document.getElementById("maria").style.display = "none";
@@ -166,14 +190,21 @@
       document.getElementById("nextBtn").style.display = "none";
       document.getElementById("game").style.display = "block";
 
-      const przeciwnik = wybranaPostac === "maria" ? "Wiktoria" : "Maria";
-      document.getElementById("versusText").innerText = `Ty: ${wybranaPostac.charAt(0).toUpperCase() + wybranaPostac.slice(1)} vs ${przeciwnik}`;
+      const przeciwnik = wybranaPostac === "maria" ? "wiktoria" : "maria";
+      document.getElementById("versusText").innerText = `Ty: ${capitalize(wybranaPostac)} vs ${capitalize(przeciwnik)}`;
+
+      document.getElementById("playerImage").src = imgLinks[wybranaPostac];
+      document.getElementById("enemyImage").src = imgLinks[przeciwnik];
     }
 
     function playGame(userChoice) {
       const przeciwnikChoice = '✂️';
-      const result = "Remis! Oboje wybraliście nożyce ✂️";
+      const result = "Oboje wybraliście nożyce ✂️✂️";
       document.getElementById("result").innerText = result;
+    }
+
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
     }
   </script>
 
