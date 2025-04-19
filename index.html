@@ -8,49 +8,71 @@
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 20px;
-      background-color: #f0f0f0;
+      background-color: #F5F5DC; /* Jasny beż */
+      color: #333333; /* Ciemny szary tekst */
     }
-    .character-button, .next-button {
+    .character-button, .game-button {
       padding: 10px 20px;
       margin: 10px;
       font-size: 18px;
       cursor: pointer;
+      background-color: #FFD700; /* Złocisty beż */
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
     }
-    .character-info {
+    .character-button:hover, .game-button:hover {
+      background-color: #FFCC00; /* Jaśniejszy odcień złotego beżu */
+    }
+    .character-info, .game-info {
       display: none;
       margin-top: 30px;
       padding: 20px;
-      background: white;
+      background: #FAF0E6; /* Biały beż */
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
       max-width: 500px;
       margin-left: auto;
       margin-right: auto;
     }
-    .game-section {
-      display: none;
-      margin-top: 30px;
-    }
-    .character-image {
+    img {
       max-width: 200px;
       border-radius: 10px;
+      margin-bottom: 20px;
     }
-    .images-container {
+    .game-section {
+      display: none;
+    }
+    .game-options {
       display: flex;
-      justify-content: space-around;
-      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+    .game-options button {
+      font-size: 24px;
+      padding: 20px;
+    }
+    #audioWiktoria {
+      display: none;
       margin-top: 20px;
     }
-    .emoji-buttons button {
-      font-size: 40px;
-      margin: 10px;
-      cursor: pointer;
-      background: none;
+    .audio-button {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      padding: 10px 20px;
+      background-color: #4CAF50; /* Zielony */
+      color: white;
+      font-size: 18px;
       border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s;
     }
-    .result-text {
-      font-size: 20px;
-      margin-top: 20px;
+    .audio-button:hover {
+      background-color: #45a049; /* Jaśniejszy zielony przy hover */
     }
   </style>
 </head>
@@ -63,63 +85,89 @@
 
   <div id="maria" class="character-info">
     <h2>Maria</h2>
-    <img class="character-image" src="https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/434026113_1223216478642130_5540321584384951919_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=107&ccb=1-7&_nc_sid=e99d92&_nc_ohc=nN4Atnb_XvAQ7kNvwE5tlKV&_nc_oc=AdmJA2DBy31M3f_tuu6jkKblpLSIqq8jBixZN6bOG4ijCi9kiAKmUFgKgTapiTO3W4D3DpFLDy35sJTP8fwgYhFF&_nc_zt=24&_nc_ht=scontent-waw2-2.xx&_nc_gid=6dpOO_1uzhN0ifhlvjmAAQ&oh=00_AfFpcLj4W-nHX4QlEqMPs7BYRCqCy21dDHeb0ztjky2XSA&oe=67FEFDA4" alt="Maria">
+    <img src="https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/434026113_1223216478642130_5540321584384951919_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=107&ccb=1-7&_nc_sid=e99d92&_nc_ohc=Uw9LUV1eLjMQ7kNvwHrSWCp&_nc_oc=AdnnIkEctgMRtq4G18Vwpb-BOGB4IE5_1VLzLF2hue7XuzBNEwZ0ySMs0cik6Pyp4YCFxvkUIybCv4i_GZonkOTw&_nc_zt=24&_nc_ht=scontent-waw2-2.xx&_nc_gid=_52SSiPK3dQR1dHb9FITaw&oh=00_AfFPRwsyggNP9wy4iH0rz2VY-vIGbZeh1o2I-BmKdwZXxg&oe=680989A4" alt="Maria">
     <p><strong>Wiek:</strong> 19 lat</p>
     <p><strong>Cechy:</strong> SLAY</p>
     <p><strong>Zdolności:</strong> Może zagrać na twoim flecie :3</p>
     <p><strong>Słabości:</strong> That one girl who can sing</p>
-    <button class="next-button" onclick="startGame('maria')">Dalej</button>
   </div>
 
   <div id="wiktoria" class="character-info">
     <h2>Wiktoria</h2>
-    <img class="character-image" src="https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/458761215_2250802375305871_8073348557999722281_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=102&ccb=1-7&_nc_sid=e99d92&_nc_ohc=59scoXVmVA0Q7kNvwEd5IwB&_nc_oc=Adk5QcaTcsJI3Me3MIZXtxX77LfoOzIyiFBG75NAvnP6jGcRrAvhpf-GTyNoeuwHply9JMyGN2WQeGXFWVTk5dH2&_nc_zt=24&_nc_ht=scontent-waw2-2.xx&_nc_gid=40J-tCsYECP1DaQiY1H5rw&oh=00_AfHpxSAuqpPa9JrKQvlqM51vVwpVMWR54IcUgrVdLWXRaA&oe=68099A64" alt="Wiktoria">
+    <img src="https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/458761215_2250802375305871_8073348557999722281_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=102&ccb=1-7&_nc_sid=e99d92&_nc_ohc=59scoXVmVA0Q7kNvwEd5IwB&_nc_oc=Adk5QcaTcsJI3Me3MIZXtxX77LfoOzIyiFBG75NAvnP6jGcRrAvhpf-GTyNoeuwHply9JMyGN2WQeGXFWVTk5dH2&_nc_zt=24&_nc_ht=scontent-waw2-2.xx&_nc_gid=40J-tCsYECP1DaQiY1H5rw&oh=00_AfHpxSAuqpPa9JrKQvlqM51vVwpVMWR54IcUgrVdLWXRaA&oe=68099A64" alt="Wiktoria">
     <p><strong>Wiek:</strong> 20 lat</p>
     <p><strong>Cechy:</strong> SIGMA GIRL</p>
     <p><strong>Zdolności:</strong> Singing</p>
     <p><strong>Słabości:</strong> Maria Adamiak</p>
-    <button class="next-button" onclick="startGame('wiktoria')">Dalej</button>
   </div>
 
-  <div id="game" class="game-section">
-    <div class="images-container">
-      <img id="playerImage" class="character-image" src="" alt="Twoja postać">
-      <img id="enemyImage" class="character-image" src="" alt="Przeciwnik">
+  <button class="audio-button" onclick="pokazAudio()">Kliknij ten guzik Wiktoria</button>
+
+  <div id="audioWiktoria" style="display: none; margin-top: 10px;">
+    <audio controls>
+      <source src="iknew.mp3" type="audio/mpeg">
+      Twoja przeglądarka nie obsługuje odtwarzania dźwięku.
+    </audio>
+  </div>
+
+  <!-- Gra: Papier, Kamień, Nożyce -->
+  <div id="game-section" class="game-section">
+    <h2>Wybierz nożyce!</h2>
+    <div class="game-options">
+      <button class="game-button" onclick="playGame('nozyce')">✂️</button>
+      <button class="game-button" onclick="playGame('nozyce')">✂️</button>
+      <button class="game-button" onclick="playGame('nozyce')">✂️</button>
     </div>
-    <div class="emoji-buttons">
-      <button onclick="playGame()">✂️</button>
-      <button onclick="playGame()">✂️</button>
-      <button onclick="playGame()">✂️</button>
+
+    <div id="game-result" class="game-info">
+      <p><strong>Oboje wybraliście nożyce!</strong></p>
+      <p>Remis!</p>
+      <div style="display: flex; justify-content: space-between; padding: 20px;">
+        <div>
+          <h3>Twoja Postać:</h3>
+          <img src="" id="player-img" alt="Wybrana postać" />
+        </div>
+        <div>
+          <h3>Przeciwnik:</h3>
+          <img src="" id="enemy-img" alt="Przeciwnik" />
+        </div>
+      </div>
     </div>
-    <div class="result-text" id="resultText"></div>
   </div>
 
   <script>
-    let chosenCharacter = '';
+    let selectedCharacter = null;
+    let enemyCharacter = null;
 
+    // Wybór postaci
     function showCharacter(name) {
+      selectedCharacter = name;
       document.getElementById("maria").style.display = "none";
       document.getElementById("wiktoria").style.display = "none";
-      document.getElementById(name).style.display = "block";
-    }
-
-    function startGame(character) {
-      chosenCharacter = character;
-      document.getElementById("maria").style.display = "none";
-      document.getElementById("wiktoria").style.display = "none";
-      document.getElementById("game").style.display = "block";
-
-      if (character === 'maria') {
-        document.getElementById("playerImage").src = document.querySelector('#maria img').src;
-        document.getElementById("enemyImage").src = document.querySelector('#wiktoria img').src;
-      } else {
-        document.getElementById("playerImage").src = document.querySelector('#wiktoria img').src;
-        document.getElementById("enemyImage").src = document.querySelector('#maria img').src;
+      
+      // Ustawienie postaci po wybraniu
+      if (name === "maria") {
+        document.getElementById("player-img").src = "https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/434026113_1223216478642130_5540321584384951919_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=107&ccb=1-7&_nc_sid=e99d92&_nc_ohc=nN4Atnb_XvAQ7kNvwE5tlKV&_nc_oc=AdmJA2DBy31M3f_tuu6jkKblpLSIqq8jBixZN6bOG4ijCi9kiAKmUFgKgTapiTO3W4D3DpFLDy35sJTP8fwgYhFF&_nc_zt=24&_nc_ht=scontent-waw2-2.xx&_nc_gid=6dpOO_1uzhN0ifhlvjmAAQ&oh=00_AfFpcLj4W-nHX4QlEqMPs7BYRCqCy21dDHeb0ztjky2XSA&oe=67FEFDA4";
+      } else if (name === "wiktoria") {
+        document.getElementById("player-img").src = "https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/458761215_2250802375305871_8073348557999722281_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=102&ccb=1-7&_nc_sid=e99d92&_nc_ohc=8_rdS_3LnngQ7kNvwFE0Tmo&_nc_oc=Adl2w88QsrqJifRqhTHJgyLF_99FhpV2x3wE15BjdqySUgcivbygVf8WcBZf_i5Up2uIwAsIAXTeu0IEtUhqq8C2&_nc_zt=24&_nc_ht=scontent-waw2-2.xx&_nc_gid=xn7f08iIZQst8-k14uQ5cw&oh=00_AfHeeZLEvBE1tiADqzvFX8Y-1Zld51crHOjM_vo-4NUv4w&oe=67FED624";
       }
+
+      document.getElementById("game-section").style.display = "block";
     }
 
-    function playGame() {
-      document.getElementById("resultText").textContent = "Oboje wybraliście ✂️ — remis!";
+    // Gra: Wybor nożyc
+    function playGame(playerChoice) {
+      // Zakładając, że przeciwnik zawsze wybiera nożyce
+      let enemyChoice = "nozyce";
+      document.getElementById("enemy-img").src = "https://www.example.com/images/nozyce.jpg";  // Przykładowe zdjęcie przeciwnika
+      
+      let result = "Remis! Obaj wybraliście nożyce!";
+      document.getElementById("game-result").style.display = "block";
+      document.getElementById("game-section").style.display = "none";
+    }
+
+    function pokazAudio() {
+      document.getElementById("audioWiktoria").style.display = "block";
     }
   </script>
 
