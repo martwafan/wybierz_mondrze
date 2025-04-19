@@ -53,17 +53,18 @@
       justify-content: space-around;
       align-items: center;
       margin-top: 20px;
+      margin-bottom: 10px;
     }
 
     .emoji-buttons {
       display: flex;
-      flex-direction: column;
       justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
     }
 
     .emoji-buttons button {
       font-size: 40px;
-      margin: 10px;
       cursor: pointer;
       background-color: #ffc0cb;
       border: 2px solid #ff99aa;
@@ -121,15 +122,15 @@
     </div>
     <div class="images-container">
       <img id="playerImage" class="character-image" src="" alt="Twoja postać">
-
-      <div class="emoji-buttons">
-        <button onclick="playGame()">✂️</button>
-        <button onclick="playGame()">✂️</button>
-        <button onclick="playGame()">✂️</button>
-      </div>
-
       <img id="enemyImage" class="character-image" src="" alt="Przeciwnik">
     </div>
+
+    <div class="emoji-buttons">
+      <button onclick="playGame()">✂️</button>
+      <button onclick="playGame()">✂️</button>
+      <button onclick="playGame()">✂️</button>
+    </div>
+
     <div class="result-text" id="resultText"></div>
   </div>
 
