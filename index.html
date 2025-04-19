@@ -55,6 +55,12 @@
       margin-top: 20px;
     }
 
+    .emoji-buttons {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
     .emoji-buttons button {
       font-size: 40px;
       margin: 10px;
@@ -112,16 +118,17 @@
   <div id="game" class="game-section">
     <div class="game-description">
       Gra: Papier, Kamień, Nożyce<br>
-      UWAGA: wszyscy zawsze wybierają ✂️, więc będzie remis 😎
     </div>
     <div class="images-container">
       <img id="playerImage" class="character-image" src="" alt="Twoja postać">
+
+      <div class="emoji-buttons">
+        <button onclick="playGame()">✂️</button>
+        <button onclick="playGame()">✂️</button>
+        <button onclick="playGame()">✂️</button>
+      </div>
+
       <img id="enemyImage" class="character-image" src="" alt="Przeciwnik">
-    </div>
-    <div class="emoji-buttons">
-      <button onclick="playGame()">✂️</button>
-      <button onclick="playGame()">✂️</button>
-      <button onclick="playGame()">✂️</button>
     </div>
     <div class="result-text" id="resultText"></div>
   </div>
