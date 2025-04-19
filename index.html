@@ -48,17 +48,17 @@
       border-radius: 10px;
     }
 
-    .game-play {
+    .middle-row {
       display: flex;
-      justify-content: center;
       align-items: center;
-      margin-top: 30px;
-      gap: 20px;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
     }
 
     .emoji-buttons {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       gap: 15px;
     }
 
@@ -85,18 +85,6 @@
       margin-top: 20px;
       font-size: 18px;
       color: #333;
-    }
-
-    .image-row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 60px;
-    }
-
-    .emoji-row {
-      margin-top: -30px;
-      margin-bottom: 20px;
     }
   </style>
 </head>
@@ -129,18 +117,19 @@
 
   <div id="game" class="game-section">
     <div class="game-description">
-      Gra: Papier, Kamień, Nożyce<br>
+      Gra: Papier, Kamień, Nożyce
     </div>
 
-    <div class="image-row">
+    <div class="middle-row">
       <img id="playerImage" class="character-image" src="" alt="Twoja postać">
+      
+      <div class="emoji-buttons">
+        <button onclick="playGame()">✂️</button>
+        <button onclick="playGame()">✂️</button>
+        <button onclick="playGame()">✂️</button>
+      </div>
+      
       <img id="enemyImage" class="character-image" src="" alt="Przeciwnik">
-    </div>
-
-    <div class="emoji-buttons emoji-row">
-      <button onclick="playGame()">✂️</button>
-      <button onclick="playGame()">✂️</button>
-      <button onclick="playGame()">✂️</button>
     </div>
 
     <div class="result-text" id="resultText"></div>
@@ -177,4 +166,3 @@
 
 </body>
 </html>
-
